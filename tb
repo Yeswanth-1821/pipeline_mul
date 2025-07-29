@@ -1,0 +1,17 @@
+// Code your testbench here
+// or browse Examples
+`timescale 1ns/1ps
+module tb_pipelined_multiplier;
+
+reg clk = 0;
+reg [7:0] a = 8'd15, b = 8'd12;
+wire [15:0] result;
+
+pipelined_multiplier uut (.clk(clk), .a(a), .b(b), .result(result));
+always #5 clk = ~clk;
+
+initial begin
+    $dumpfile("pipe_mult.vcd"); $dumpvars(0, tb_pipelined_multiplier);
+    #200 $finish;
+end
+endmodule
